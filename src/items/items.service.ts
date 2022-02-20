@@ -1,4 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+
 import { ItemDto } from './dto/item.dto';
 import { Item } from './model/item.model';
 
@@ -70,9 +71,9 @@ export class ItemsService {
     return newItem;
   }
 
-  deleteItemById(id: string): Item[] {
+  deleteItemById(id: string): Item {
     const index = this.items.findIndex((val) => val.id === id);
-    const item = this.items.splice(index, 1);
+    const [item] = this.items.splice(index, 1);
     return item;
   }
 }
