@@ -17,27 +17,27 @@ export class ItemsController {
   constructor(private itemService: ItemsService) {}
 
   @Get()
-  getAllItem(): Item[] {
+  getAllItem(): Promise<Item[]> {
     return this.itemService.findAllItem();
   }
 
   @Get(':id')
-  getItem(@Param('id') id: string): Item {
+  getItem(@Param('id') id: string): Promise<Item> {
     return this.itemService.findItemById(id);
   }
 
   @Post()
-  addItem(@Body() itemDto: ItemDto): Item[] {
+  addItem(@Body() itemDto: ItemDto): Promise<Item> {
     return this.itemService.insertItem(itemDto);
   }
 
   @Put(':id')
-  updateItem(@Param('id') id: string, @Body() itemDto: ItemDto): Item {
+  updateItem(@Param('id') id: string, @Body() itemDto: ItemDto): Promise<Item> {
     return this.itemService.updateItemById(id, itemDto);
   }
 
   @Delete(':id')
-  deleteItem(@Param('id') id: string): Item {
+  deleteItem(@Param('id') id: string): Promise<Item> {
     return this.itemService.deleteItemById(id);
   }
 }
